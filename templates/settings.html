@@ -1,0 +1,30 @@
+{% import "_includes/forms" as forms %}
+<div class="field">
+    {{ forms.textField({
+    label: 'Mediaflow URL',
+    required: true,
+    instructions: 'Including http(s)://',
+    name: 'url',
+    value: settings.url
+    }) }}
+</div>
+
+<div class="field">
+    {{ forms.textField({
+    label: 'Username',
+    required: true,
+    instructions: 'Your Mediaflow username ',
+    name: 'username',
+    value: settings.username
+    }) }}
+</div>
+
+<div class="field">
+    {{ forms.textField({
+    label: 'API Key',
+    required: true,
+    instructions: 'API key can be obtained in Mediaflow settings',
+    name: 'apiKey',
+    value: settings.apiKey
+    }) }}
+</div>
