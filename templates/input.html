@@ -1,13 +1,16 @@
 <div ng-app="mediaflow" ng-controller="MediaFlowFieldCtrl">
-    <h3>Browse Mediaflow files</h3>
-
-    <input type="button" value="browse" ng-click=""/>
-    <div>
-        <ul ng-repeat="file in files">
-
-        </ul>
+    <div ng-hide="connection" class="error">
+        Failed to connect to Mediaflow using current settings
+    </div>
+    <div ng-show="connection">
+        <h3>Browse Mediaflow files</h3>
+        <input type="button" value="Browse" class="btn" ng-click="showMedia = !showMedia;"/>
+        <div ng-show="showMedia">
+            <ul ng-repeat="medium in media">
+                <li><img ng-click="select(medium)" ng-src="[[medium.thumbnailUrl]]" style="float:left" /></li>
+            </ul>
+        </div>
     </div>
 </div>
-{{ resourceUrl('mediaflow/mediaflow-ng.js') }}
-{% includeJsResource "mediaflow/mediaflow-ng.js" %}.
+{% includeJsResource "mediaflow/mediaflow-ng.js" %}
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>

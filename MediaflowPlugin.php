@@ -44,8 +44,6 @@ class MediaflowPlugin extends BasePlugin {
 
     public function prepSettings($settings)
     {
-        // Modify $settings here...
-
         return $settings;
     }
 
@@ -54,4 +52,11 @@ class MediaflowPlugin extends BasePlugin {
     {
         return true;
     }
+    public function registerCpRoutes()
+    {
+        return array(
+            'mediaflow/check' => array('action' => 'mediaflow/settings/testConnection'),
+            'mediaflow/media' => array('action' => 'mediaflow/settings/listMedia'),
+        );
+}
 } 
