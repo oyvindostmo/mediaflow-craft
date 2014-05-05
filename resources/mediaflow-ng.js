@@ -3,6 +3,7 @@ mediaflow.config(function($interpolateProvider){
     $interpolateProvider.startSymbol('[[').endSymbol(']]');
 });
 mediaflow.controller('MediaFlowFieldCtrl', function($scope, $http){
+    $scope.selected = JSON.parse($('#fields-mf-helper').text()); // TODO: Remove DOM operation
     $scope.connection = false;
     $scope.showMedia = false;
     $scope.media = [];
@@ -18,4 +19,8 @@ mediaflow.controller('MediaFlowFieldCtrl', function($scope, $http){
         });
     };
     $scope.getMedia();
+
+    $scope.select = function(medium) {
+        $scope.selected = medium;
+    };
 });
