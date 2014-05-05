@@ -1,0 +1,28 @@
+{
+    "name": "keyteqlabs/mediaflow-craft",
+    "description": "Mediaflow Craft plugin",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Krzysztof Hasiński",
+            "email": "krzysztof.hasinski@espeo.pl"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@github.com:KeyteqLabs/keymedia-php.git"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.0",
+        "KeyteqLabs/keymedia-php": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Keyteq\\": "src/",
+            "Requests": "library/"
+        }
+    }
+}

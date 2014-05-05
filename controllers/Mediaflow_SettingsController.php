@@ -1,16 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: hasik
- * Date: 4/18/14
- * Time: 4:16 PM
- */
 
 namespace Craft\controllers;
 
+require __DIR__.'/../vendor/autoload.php';
 
 class Mediaflow_SettingsController extends BaseController {
-    public function editAction() {
+    public function actionTestConnection() {
 
     }
 } 
