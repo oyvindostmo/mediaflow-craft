@@ -7,7 +7,7 @@ mediaflow.controller('MediaFlowFieldCtrl', function($scope, $http){
     $scope.showMedia = false;
     $scope.media = [];
     $scope.testConnection = function() {
-        $http.get('/public/index.php/admin/mediaflow/check').success(function(result) { // FIXME
+        $http.get('/admin/mediaflow/check').success(function(result) { // FIXME
             $scope.connection = result;
         });
     };
