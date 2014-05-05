@@ -9,6 +9,20 @@
 
 {% set content %}
 
+<div ng-app="mediaflow" ng-controller="MediaFlowFieldCtrl">
+    <div ng-hide="connection" class="error">
+        Failed to connect to Mediaflow using current settings
+    </div>
+    <div ng-show="connection">
+        <h3>Browse Mediaflow files</h3>
 
+            <ul ng-repeat="medium in media">
+                <li><img ng-click="select(medium)" ng-src="[[medium.thumbnailUrl]]" style="float:left" /></li>
+            </ul>
+        <input type="hidden" value="[[selected|json]]" name="{{name}}" />
+    </div>
+</div>
+{% includeJsResource "mediaflow/mediaflow-ng.js" %}
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 
 {% endset %}

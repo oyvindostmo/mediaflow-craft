@@ -6,7 +6,7 @@
         <h3>Browse Mediaflow files</h3>
 
         <p><img ng-src="[[selected.thumbnailUrl]]" ng-show="selected"/></p>
-        <p><input type="button" value="Browse" class="btn" ng-click="showMedia = !showMedia;"/></p>
+        <p><input type="button" value="[[showMedia ? 'Hide' : 'Browse']]" class="btn" ng-click="showMedia = !showMedia;"/></p>
         <div ng-show="showMedia">
             <ul ng-repeat="medium in media">
                 <li><img ng-click="select(medium)" ng-src="[[medium.thumbnailUrl]]" style="float:left" /></li>

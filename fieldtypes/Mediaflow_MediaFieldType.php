@@ -16,7 +16,6 @@ class Mediaflow_MediaFieldType extends BaseFieldType
         ));
     }
 
-
     public function defineContentAttribute()
     {
         return AttributeType::Mixed;
