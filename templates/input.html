@@ -12,9 +12,7 @@
                 <li><img ng-click="select(medium)" ng-src="[[medium.thumbnailUrl]]" style="float:left" /></li>
             </ul>
         </div>
-        <textarea id="mf-helper" ng-show="false">
-            {{value|raw}}
-        </textarea>
+        <div ng-init="selected={{value|json_encode()}}"></div>
         <input type="hidden" value="[[selected|json]]" name="{{name}}" />
     </div>
 </div>
