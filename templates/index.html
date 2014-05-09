@@ -3,26 +3,109 @@
 {% set title = "Mediaflow"|t %}
 
 {% set tabs = {
-    recent: { label: "Browse"|t, url: url('mediaflow/index') },
-    new:    { label: "Settings"|t, url: url('settings/plugins/mediaflow') }
+browse: { label: "Browse"|t, url: url('mediaflow/index') }
 } %}
 
 {% set content %}
 
-<div ng-app="mediaflow" ng-controller="MediaFlowFieldCtrl">
-    <div ng-hide="connection" class="error">
+<div ng-app="mediaflow" ng-controller="MediaFlowBrowseCtrl">
+    <div ng-hide="connection" class="error ng-cloak">
         Failed to connect to Mediaflow using current settings
     </div>
-    <div ng-show="connection">
-        <h3>Browse Mediaflow files</h3>
+    <div ng-show="connection" id="content" class="content has-sidebar" style="min-height: 80px;">
+        <div class="resize-triggers">
+            <div class="expand-trigger">
+                <div style="width: 1025px; height: 191px;"></div>
+            </div>
+            <div class="contract-trigger"></div>
+        </div>
+        <div id="sidebar" class="sidebar first" style="top: -24px; max-height: 190px;">
+            <div class="resize-triggers">
+                <div class="expand-trigger">
+                    <div style="width: 219px; height: 129px;"></div>
+                </div>
+                <div class="contract-trigger"></div>
+            </div>
+            <div class="buttons first"><input type="file" multiple="multiple" name="assets-upload"
+                                              style="display: none;">
 
-            <ul ng-repeat="medium in media">
-                <li><img ng-click="select(medium)" ng-src="[[medium.thumbnailUrl]]" style="float:left" /></li>
-            </ul>
-        <input type="hidden" value="[[selected|json]]" name="{{name}}" />
-    </div>
+                <div class="btn submit assets-upload-button" data-icon="↑" style="position: relative; overflow: hidden;"
+                     role="button">Upload files
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <a data-key="folder:1" data-has-thumbs="1" class="sel" tabindex="0">Mediaflow library</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="elementindex">
+
+
+            <div class="main">
+                <div class="toolbar">
+                    <table class="inputs fullwidth">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div class="texticon search icon">
+                                    <input class="text nicetext fullwidth" type="text" autocomplete="off"
+                                           placeholder="Search">
+                                </div>
+                            </td>
+                            <td class="thin viewbtns">
+                                <div class="btngroup">
+                                    <div role="button" class="btn" ng-class="{active: view=='list'}" title="Display in a table"
+                                         data-icon="list"></div>
+                                    <div data-view="thumbs" role="button" class="btn"  ng-class="{active: view=='thumbnails'}" title="Display as thumbnails"
+                                         data-icon="grid"></div>
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="spinner hidden"></div>
+                </div>
+
+                <div class="elements">
+                    <div class="tableview">
+                        <table class="data fullwidth">
+                            <thead>
+                            <tr>
+                                <th scope="col" data-attribute="title" class="ordered asc">Title</th>
+                                <th scope="col" data-attribute="size">Size</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="medium in media|filter:searchText">
+                                <td scope="row">
+                                    <div class="element hasthumb">
+                                        <img ng-show="medium.isImage" class="elementthumb elementthumb4" ng-src="[[medium.thumbnailUrl]]" />
+                                        <div class="label"><span class="title">[[medium.name]]</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-title="Size">[[medium.file.size|sizeConverter]]</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="centeralign">
+                    <div class="spinner loadingmore hidden"></div>
+                </div>
+                <div class="progressbar hidden" style="display: block; top: 63.5px; opacity: 1;">
+                    <div class="progressbar-inner" style="width: 100%;"></div>
+                </div>
+            </div>
+        </div>
 </div>
 {% includeJsResource "mediaflow/mediaflow-ng.js" %}
+{% includeCssResource "mediaflow/style.css" %}
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
 
 {% endset %}
