@@ -1,5 +1,4 @@
 # Mediaflow plugin for Craft
-===============
 Craft CMS Keyteq Mediaflow plugin. Read more [Visit Mediaflow!](http://getmediaflow.com)
 
 ## Install
