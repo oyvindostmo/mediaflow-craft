@@ -62,6 +62,7 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http) {
 
 mediaflow.controller('MediaFlowBrowseCtrl', function ($scope, $http) {
     $scope.connection = true;
+    $scope.searchText = '';
     $scope.media = [];
     $scope.testConnection = function () {
         $http.get('/admin/mediaflow/check').success(function (result) { // FIXME

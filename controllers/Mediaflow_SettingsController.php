@@ -6,10 +6,17 @@ require __DIR__.'/../vendor/autoload.php';
 
 use Keyteq\Keymedia\KeymediaClient;
 class Mediaflow_SettingsController extends BaseController {
+
+    private $previewWidth = 150;
+    private $previewHeight = 150;
+
     public function actionTestConnection() {
         $settings = craft()->plugins->getPlugin('mediaflow')->getSettings();
-
-        $client = new KeymediaClient($settings->username, $settings->url, $settings->apiKey);
+        try {
+            $client = new KeymediaClient($settings->username, $settings->url, $settings->apiKey);
+        } catch (\Exception $e) {
+            return $this->returnJson(false);
+        }
 
         $this->returnJson($client->isConnected());
     }
@@ -20,7 +27,7 @@ class Mediaflow_SettingsController extends BaseController {
         $out = array();
         foreach($client->listMedia() as $k => $item) {
             $out[$k] = $item->toArray();
-            $out[$k]['thumbnailUrl'] = $item->getThumbnailUrl(150,150);
+            $out[$k]['thumbnailUrl'] = $item->getThumbnailUrl($this->previewWidth, $this->previewHeight);
             $out[$k]['isImage'] = $item->isImage();
         }
         $this->returnJson($out);

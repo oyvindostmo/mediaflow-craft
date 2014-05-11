@@ -52,7 +52,7 @@ browse: { label: "Browse"|t, url: url('mediaflow/index') }
                         <tr>
                             <td>
                                 <div class="texticon search icon">
-                                    <input class="text nicetext fullwidth" type="text" autocomplete="off"
+                                    <input class="text nicetext fullwidth" type="text" autocomplete="off" ng-model="searchText"
                                            placeholder="Search">
                                 </div>
                             </td>
@@ -60,7 +60,7 @@ browse: { label: "Browse"|t, url: url('mediaflow/index') }
                                 <div class="btngroup">
                                     <div role="button" class="btn" ng-class="{active: view=='list'}" title="Display in a table"
                                          data-icon="list"></div>
-                                    <div data-view="thumbs" role="button" class="btn"  ng-class="{active: view=='thumbnails'}" title="Display as thumbnails"
+                                    <div role="button" class="btn" ng-class="{active: view=='thumbnails'}" title="Display as thumbnails"
                                          data-icon="grid"></div>
                                 </div>
                             </td>
@@ -103,6 +103,7 @@ browse: { label: "Browse"|t, url: url('mediaflow/index') }
                 </div>
             </div>
         </div>
+    </div>
 </div>
 {% includeJsResource "mediaflow/mediaflow-ng.js" %}
 {% includeCssResource "mediaflow/style.css" %}
