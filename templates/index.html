@@ -36,7 +36,7 @@ browse: { label: "Browse"|t, url: url('mediaflow/index') }
             <nav>
                 <ul>
                     <li>
-                        <a data-key="folder:1" data-has-thumbs="1" class="sel" tabindex="0">Mediaflow library</a>
+                        <a class="sel" tabindex="0">Mediaflow library</a>
                     </li>
                 </ul>
             </nav>
@@ -58,19 +58,18 @@ browse: { label: "Browse"|t, url: url('mediaflow/index') }
                             </td>
                             <td class="thin viewbtns">
                                 <div class="btngroup">
-                                    <div role="button" class="btn" ng-class="{active: view=='list'}" title="Display in a table"
+                                    <div role="button" class="btn" ng-class="{active: view=='list'}" ng-click="view='list'" title="Display in a table"
                                          data-icon="list"></div>
-                                    <div role="button" class="btn" ng-class="{active: view=='thumbnails'}" title="Display as thumbnails"
+                                    <div role="button" class="btn" ng-class="{active: view=='thumbnails'}" ng-click="view='thumbnails'" title="Display as thumbnails"
                                          data-icon="grid"></div>
                                 </div>
                             </td>
                         </tr>
                         </tbody>
                     </table>
-                    <div class="spinner hidden"></div>
                 </div>
 
-                <div class="elements">
+                <div class="elements" ng-show="view==='list'">
                     <div class="tableview">
                         <table class="data fullwidth">
                             <thead>
@@ -95,11 +94,17 @@ browse: { label: "Browse"|t, url: url('mediaflow/index') }
                     </div>
                 </div>
 
-                <div class="centeralign">
-                    <div class="spinner loadingmore hidden"></div>
-                </div>
-                <div class="progressbar hidden" style="display: block; top: 63.5px; opacity: 1;">
-                    <div class="progressbar-inner" style="width: 100%;"></div>
+                <div class="elements" ng-show="view==='thumbnails'">
+                    <ul class="thumbsview">
+                        <li ng-repeat="medium in media">
+                            <div class="element hasthumb">
+                                <img ng-show="medium.isImage" class="elementthumb elementthumb4" ng-src="[[medium.thumbnailUrl]]" />
+                                <div class="label"><span class="title">[[medium.name]]</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clear"></div>
                 </div>
             </div>
         </div>

@@ -10,7 +10,7 @@ mediaflow.filter('sizeConverter', function () {
             precision = 1;
         }
         if (size == 0 || size == null) {
-            return "";
+            return "";w
         }
         else if (!isNaN(size)) {
             var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
@@ -43,13 +43,13 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http) {
     $scope.showMedia = false;
     $scope.media = [];
     $scope.testConnection = function () {
-        $http.get('/admin/mediaflow/check').success(function (result) { // FIXME
+        $http.get('/admin/mediaflow/check').success(function (result) { 
             $scope.connection = result;
         });
     };
     $scope.testConnection();
     $scope.getMedia = function () {
-        $http.get('/admin/mediaflow/media').success(function (result) { // FIXME
+        $http.get('/admin/mediaflow/media').success(function (result) { 
             $scope.media = result;
         });
     };
@@ -63,15 +63,16 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http) {
 mediaflow.controller('MediaFlowBrowseCtrl', function ($scope, $http) {
     $scope.connection = true;
     $scope.searchText = '';
+    $scope.view = 'list';
     $scope.media = [];
     $scope.testConnection = function () {
-        $http.get('/admin/mediaflow/check').success(function (result) { // FIXME
+        $http.get('/admin/mediaflow/check').success(function (result) { 
             $scope.connection = result;
         });
     };
     $scope.testConnection();
     $scope.getMedia = function () {
-        $http.get('/admin/mediaflow/media').success(function (result) { // FIXME
+        $http.get('/admin/mediaflow/media').success(function (result) { 
             $scope.media = result;
         });
     };
