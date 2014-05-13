@@ -1,4 +1,4 @@
-var mediaflow = angular.module('mediaflow', []);
+var mediaflow = angular.module('mediaflow', ['angularFileUpload']);
 mediaflow.config(function ($interpolateProvider) {
     $interpolateProvider.startSymbol('[[').endSymbol(']]');
 });
@@ -60,7 +60,7 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http) {
     };
 });
 
-mediaflow.controller('MediaFlowBrowseCtrl', function ($scope, $http) {
+mediaflow.controller('MediaFlowBrowseCtrl', function ($scope, $http, $upload) {
     $scope.connection = true;
     $scope.searchText = '';
     $scope.view = 'list';
@@ -77,4 +77,19 @@ mediaflow.controller('MediaFlowBrowseCtrl', function ($scope, $http) {
         });
     };
     $scope.getMedia();
+
+    $scope.onFileSelect = function($files) {
+        for (var i = 0; i < $files.length; i++) {
+            var $file = $files[i];
+            $scope.upload = $upload.upload({
+                url: '/admin/mediaflow/upload',
+                file: $file,
+                progress: function(evt) {
+                    // TODO
+                }
+            }).success(function(data, status, headers, config) {
+                    $scope.getMedia();
+                });
+        }
+    }
 });

@@ -30,7 +30,10 @@ browse: { label: "Browse"|t, url: url('mediaflow/index') }
                                               style="display: none;">
 
                 <div class="btn submit assets-upload-button" data-icon="↑" style="position: relative; overflow: hidden;"
-                     role="button">Upload files
+                     role="button"><label for="mediaflow_file_upload">Upload files</label>
+
+                     <input style="display:none" id="mediaflow_file_upload" type="file" ng-file-select="onFileSelect($files)" multiple>
+
                 </div>
             </div>
             <nav>
@@ -110,6 +113,7 @@ browse: { label: "Browse"|t, url: url('mediaflow/index') }
         </div>
     </div>
 </div>
+{% includeJsResource "mediaflow/angularjs-file-upload.js" %}
 {% includeJsResource "mediaflow/mediaflow-ng.js" %}
 {% includeCssResource "mediaflow/style.css" %}
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>

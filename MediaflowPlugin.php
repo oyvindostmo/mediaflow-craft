@@ -57,6 +57,7 @@ class MediaflowPlugin extends BasePlugin {
         return array(
             'mediaflow/check' => array('action' => 'mediaflow/settings/testConnection'),
             'mediaflow/media' => array('action' => 'mediaflow/settings/listMedia'),
+            'mediaflow/upload' => array('action' => 'mediaflow/settings/upload'),
         );
 }
 } 

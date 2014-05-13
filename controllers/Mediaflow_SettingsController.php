@@ -32,4 +32,8 @@ class Mediaflow_SettingsController extends BaseController {
         }
         $this->returnJson($out);
     }
+
+    public function actionUpload($a) {
+        $this->returnJson($a);
+    }
 } 
