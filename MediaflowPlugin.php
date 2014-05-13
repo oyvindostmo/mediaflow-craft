@@ -11,7 +11,7 @@ class MediaflowPlugin extends BasePlugin {
 
     public function getVersion()
     {
-        return '0.0.1';
+        return '0.0.3';
     }
 
     public function getDeveloper()
