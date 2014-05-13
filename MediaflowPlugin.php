@@ -47,11 +47,11 @@ class MediaflowPlugin extends BasePlugin {
         return $settings;
     }
 
-
     public function hasCpSection()
     {
         return true;
     }
+
     public function registerCpRoutes()
     {
         return array(

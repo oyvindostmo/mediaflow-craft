@@ -33,7 +33,12 @@ class Mediaflow_SettingsController extends BaseController {
         $this->returnJson($out);
     }
 
-    public function actionUpload($a) {
-        $this->returnJson($a);
+    public function actionUpload() {
+
+        $settings = craft()->plugins->getPlugin('mediaflow')->getSettings();
+
+        $client = new KeymediaClient($settings->username, $settings->url, $settings->apiKey);
+        $client->postMedia($_FILES['file']['tmp_name'], $_FILES['file']['name']);
+        $this->returnJson($_FILES);
     }
 } 
