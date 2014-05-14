@@ -8,9 +8,20 @@
         <p><img ng-src="[[selected.thumbnailUrl]]" ng-show="selected"/></p>
         <p><input type="button" value="[[showMedia ? 'Hide' : 'Browse']]" class="btn" ng-click="showMedia = !showMedia;"/></p>
         <div ng-show="showMedia">
-            <ul>
-                <li ng-repeat="medium in media"><img ng-click="select(medium)" ng-src="[[medium.thumbnailUrl]]" style="float:left" /></li>
-            </ul>
+
+
+            <div class="elements">
+                <ul class="thumbsview">
+                    <li ng-repeat="medium in media">
+                        <div class="element hasthumb" ng-click="select(medium)">
+                            <img ng-show="medium.isImage" class="elementthumb elementthumb4" ng-src="[[medium.thumbnailUrl]]" />
+                            <div class="label"><span class="title">[[medium.name]]</span>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+            </div>
         </div>
         <div ng-init="selected={{value|json_encode()}}"></div>
         <input type="hidden" value="[[selected|json]]" name="{{name}}" />

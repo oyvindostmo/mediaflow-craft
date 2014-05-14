@@ -58,6 +58,21 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http) {
     $scope.select = function (medium) {
         $scope.selected = medium;
     };
+
+    $scope.onFileSelect = function($files) {
+        for (var i = 0; i < $files.length; i++) {
+            var $file = $files[i];
+            $scope.upload = $upload.upload({
+                url: '/admin/mediaflow/upload',
+                file: $file,
+                progress: function(evt) {
+                    // TODO
+                }
+            }).success(function(data, status, headers, config) {
+                    $scope.getMedia();
+                });
+        }
+    }
 });
 
 mediaflow.controller('MediaFlowBrowseCtrl', function ($scope, $http, $upload) {
