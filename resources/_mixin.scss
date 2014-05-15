@@ -1,0 +1,22 @@
+@mixin transition($content) {
+    -webkit-transition: $content;
+    -moz-transition: $content;
+    -o-transition: $content;
+    -ms-transition: $content;
+    transition: $content;
+}
+
+@mixin accel() {
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+
+    @include transform(translateZ(0));
+}
+
+@mixin transform($content) {
+    -webkit-transform: $content;
+    -moz-transform: $content;
+    -o-transform: $content;
+    -ms-transform: $content;
+    transform: $content;
+}

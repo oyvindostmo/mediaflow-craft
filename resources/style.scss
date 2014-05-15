@@ -1,0 +1,83 @@
+@import 'mixin';
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+.mediaflow-preview {
+    margin-bottom: 10px;
+    img {
+        float: left;
+        margin-right: 1em;
+        border-radius: 3px;
+    }
+
+    .mediaflow-meta {
+        dt {
+            width: 100px;
+            float: left;
+            font-weight: bold;
+            text-align: right;
+            padding: 0 10px 4px 0;
+        }
+        dd {
+            clear: right;
+            font-size: 110%;
+            padding: 0 10px 4px 0;
+        }
+    }
+}
+
+.matrixblock .mediaflow-fold {
+    margin: 1.2em -14px 0 -14px;
+    padding: 10px 14px;
+}
+
+.mediaflow-fold {
+    position: relative;
+    margin: 1.2em -24px 0 -24px;
+    padding: 10px 24px;
+    background: #333;
+
+    .thumbs li {
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        margin: 12px 12px 0 0;
+        float: left;
+        display: block;
+        cursor: pointer;
+
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 3px;
+            @include transition(all .4s ease);
+
+            &:hover {
+                width: 110px;
+                height: 110px;
+                @include transform(translate(-5px, -5px));
+            }
+        }
+    }
+
+    .close {
+        float: right;
+    }
+
+    &:after {
+        bottom: 100%;
+        left: 5%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        border-color: rgba(51, 51, 51, 0);
+        border-bottom-color: #333;
+        border-width: 10px;
+        margin-left: -10px;
+    }
+}

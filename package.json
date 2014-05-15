@@ -1,0 +1,24 @@
+{
+  "name": "mediaflow-craft",
+  "version": "0.0.6",
+  "description": "Mediaflow plugin for Craft",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/KeyteqLabs/mediaflow-craft.git"
+  },
+  "author": "Keyteq Labs <labs@keyteq.no>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KeyteqLabs/mediaflow-craft/issues"
+  },
+  "homepage": "https://github.com/KeyteqLabs/mediaflow-craft",
+  "devDependencies": {
+    "gulp": "^3.6.2",
+    "gulp-jshint": "^1.6.1",
+    "gulp-sass": "^0.7.1"
+  }
+}

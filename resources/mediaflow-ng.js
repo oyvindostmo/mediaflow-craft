@@ -5,36 +5,32 @@ mediaflow.config(function ($interpolateProvider) {
 
 mediaflow.filter('sizeConverter', function () {
     return function (size, precision) {
+        precision = precision || 0;
 
-        if (precision == 0 || precision == null) {
-            precision = 1;
-        }
-        if (size == 0 || size == null) {
-            return "";w
-        }
-        else if (!isNaN(size)) {
-            var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-            var posttxt = 0;
+        if (!size) { return ''; }
 
-            if (size < 1024) {
-                return Number(size) + " " + sizes[posttxt];
-            }
-            while (size >= 1024) {
-                posttxt++;
-                size = size / 1024;
-            }
-
-            var power = Math.pow(10, precision);
-            var poweredVal = Math.ceil(size * power);
-
-            size = poweredVal / power;
-
-            return size + " " + sizes[posttxt];
-        } else {
+        if (isNaN(size)) {
             console.log('Error: Not a number.');
-            return "";
+            return '';
         }
 
+        var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+        var posttxt = 0;
+
+        if (size < 1024) {
+            return Number(size) + " " + sizes[posttxt];
+        }
+        while (size >= 1024) {
+            posttxt++;
+            size = size / 1024;
+        }
+
+        var power = Math.pow(10, precision);
+        var poweredVal = Math.ceil(size * power);
+
+        size = poweredVal / power;
+
+        return size + " " + sizes[posttxt];
     }
 });
 
@@ -55,8 +51,14 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http) {
     };
     $scope.getMedia();
 
+    $scope.$watch('selected', function(nv, ov) {
+        if (nv != ov) {
+        }
+    });
+
     $scope.select = function (medium) {
         $scope.selected = medium;
+        $scope.showMedia = false;
     };
 
     $scope.onFileSelect = function($files) {
