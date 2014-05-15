@@ -43,13 +43,13 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http) {
     $scope.showMedia = false;
     $scope.media = [];
     $scope.testConnection = function () {
-        $http.get('/admin/mediaflow/check').success(function (result) { 
+        $http.get('/admin/mediaflow/check').success(function (result) {
             $scope.connection = result;
         });
     };
     $scope.testConnection();
     $scope.getMedia = function () {
-        $http.get('/admin/mediaflow/media').success(function (result) { 
+        $http.get('/admin/mediaflow/media').success(function (result) {
             $scope.media = result;
         });
     };
@@ -77,21 +77,36 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http) {
 
 mediaflow.controller('MediaFlowBrowseCtrl', function ($scope, $http, $upload) {
     $scope.connection = true;
+    $scope.searching = false;
     $scope.searchText = '';
     $scope.view = 'list';
     $scope.media = [];
     $scope.testConnection = function () {
-        $http.get('/admin/mediaflow/check').success(function (result) { 
+        $http.get('/admin/mediaflow/check').success(function (result) {
             $scope.connection = result;
         });
     };
     $scope.testConnection();
-    $scope.getMedia = function () {
-        $http.get('/admin/mediaflow/media').success(function (result) { 
+    $scope.getMedia = function (search) {
+        var url = '/admin/mediaflow/media';
+        var config = {};
+        if (search) config.params = {q: search};
+        $scope.searching = true;
+        $http.get(url, config).success(function (result) {
             $scope.media = result;
+            $scope.searching = false;
         });
     };
     $scope.getMedia();
+
+    $scope.$watch('searchText', function(searchText, ov) {
+        if (searchText === ov) return;
+        setTimeout(function() {
+            if (searchText == $scope.searchText) {
+                $scope.getMedia($scope.searchText);
+            }
+        }, 250);
+    });
 
     $scope.onFileSelect = function($files) {
         for (var i = 0; i < $files.length; i++) {

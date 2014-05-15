@@ -29,8 +29,11 @@ class Mediaflow_SettingsController extends BaseController {
     }
     public function actionListMedia() {
         $client = $this->_client($this->settings);
+        $request = craft()->request;
+        $search = $request->getParam('q', false);
+        $results = $client->listMedia(false, $search);
         $out = array();
-        foreach($client->listMedia() as $k => $item) {
+        foreach($results as $k => $item) {
             $out[$k] = $item->toArray();
             $out[$k]['thumbnailUrl'] = $item->getThumbnailUrl($this->previewWidth, $this->previewHeight);
             $out[$k]['isImage'] = $item->isImage();
