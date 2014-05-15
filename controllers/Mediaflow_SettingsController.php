@@ -9,11 +9,18 @@ class Mediaflow_SettingsController extends BaseController {
 
     private $previewWidth = 150;
     private $previewHeight = 150;
+    private $settings;
+
+    public function __construct() {
+        $craft = craft();
+        $craft->log->removeRoute('WebLogRoute');
+        $craft->log->removeRoute('ProfileLogRoute');
+        $this->settings = $craft->plugins->getPlugin('mediaflow')->getSettings();
+    }
 
     public function actionTestConnection() {
-        $settings = craft()->plugins->getPlugin('mediaflow')->getSettings();
         try {
-            $client = new KeymediaClient($settings->username, $settings->url, $settings->apiKey);
+            $client = $this->_client($this->settings);
         } catch (\Exception $e) {
             return $this->returnJson(false);
         }
@@ -21,9 +28,7 @@ class Mediaflow_SettingsController extends BaseController {
         $this->returnJson($client->isConnected());
     }
     public function actionListMedia() {
-        $settings = craft()->plugins->getPlugin('mediaflow')->getSettings();
-
-        $client = new KeymediaClient($settings->username, $settings->url, $settings->apiKey);
+        $client = $this->_client($this->settings);
         $out = array();
         foreach($client->listMedia() as $k => $item) {
             $out[$k] = $item->toArray();
@@ -34,11 +39,16 @@ class Mediaflow_SettingsController extends BaseController {
     }
 
     public function actionUpload() {
-
-        $settings = craft()->plugins->getPlugin('mediaflow')->getSettings();
-
-        $client = new KeymediaClient($settings->username, $settings->url, $settings->apiKey);
+        $client = $this->_client($this->settings);
         $client->postMedia($_FILES['file']['tmp_name'], $_FILES['file']['name']);
         $this->returnJson($_FILES);
     }
-} 
+
+    protected function _client($settings) {
+        return new KeymediaClient(
+            $this->settings->username,
+            $this->settings->url,
+            $this->settings->apiKey
+        );
+    }
+}
