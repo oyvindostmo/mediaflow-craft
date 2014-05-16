@@ -6,10 +6,18 @@
 
 .mediaflow-preview {
     margin-bottom: 10px;
-    img {
+    .thumb {
         float: left;
-        margin-right: 1em;
-        border-radius: 3px;
+        width: 150px;
+        height: 150px;
+        &.empty {
+            border: 1px dashed #333;
+            border-radius: 3px;
+        }
+        img {
+            margin-right: 1em;
+            border-radius: 3px;
+        }
     }
 
     .mediaflow-meta {

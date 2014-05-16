@@ -4,8 +4,10 @@
     </div>
     <div ng-show="connection">
         <div class="mediaflow-preview clearafter">
-            <img ng-src="[[selected.thumbnailUrl]]" ng-show="selected">
-            <div class="mediaflow-meta">
+            <div class="thumb" ng-class="{empty:!selected}">
+                <img ng-src="[[selected.thumbnailUrl]]" ng-show="selected">
+            </div>
+            <div class="mediaflow-meta" ng-show="selected">
                 <dl>
                     <dt>Name</dt>
                     <dd>[[selected.name]]</dd>
@@ -36,7 +38,13 @@
                         autocomplete="off"
                         ng-model="searchText"
                         placeholder="Search">
-                    <button class="btn upload-button" data-icon="↑" role="button">Upload</button>
+                        <!--
+                    <input type="file" multiple
+                        data-icon="↑"
+                        value="Upload"
+                        class="btn upload-button"
+                        ng-file-select="onFileSelect($files)">
+                        -->
                     <a class="close" ng-click="showMedia = false">Close</a>
                 </div>
             </div>

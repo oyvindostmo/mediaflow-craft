@@ -3,10 +3,16 @@
 
 .mediaflow-preview {
   margin-bottom: 10px; }
-  .mediaflow-preview img {
+  .mediaflow-preview .thumb {
     float: left;
-    margin-right: 1em;
-    border-radius: 3px; }
+    width: 150px;
+    height: 150px; }
+    .mediaflow-preview .thumb.empty {
+      border: 1px dashed #333;
+      border-radius: 3px; }
+    .mediaflow-preview .thumb img {
+      margin-right: 1em;
+      border-radius: 3px; }
   .mediaflow-preview .mediaflow-meta dt {
     width: 100px;
     float: left;

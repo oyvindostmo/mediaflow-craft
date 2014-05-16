@@ -21,6 +21,14 @@ class Mediaflow_MediaFieldType extends BaseFieldType
         ));
     }
 
+    public function prepValueFromPost($value)
+    {
+        if (!is_array($value)) {
+            $value = array();
+        }
+        return $value;
+    }
+
     public function defineContentAttribute()
     {
         return AttributeType::Mixed;
