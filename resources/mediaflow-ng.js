@@ -34,41 +34,63 @@ mediaflow.filter('sizeConverter', function () {
     }
 });
 
-mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http, $upload) {
+mediaflow.controller('MediaFlowCtrl', function ($scope, $http, $upload) {
     $scope.connection = true;
-    $scope.showMedia = false;
-    $scope.spin = false;
-    $scope.searchText = '';
     $scope.media = [];
-
+    $scope.spin = true;
+    $scope.searchText = '';
     $scope.testConnection = function () {
         $http.get('/admin/mediaflow/check').success(function (result) {
             $scope.connection = result;
         });
     };
-
     $scope.testConnection();
 
     $scope.getMedia = function (search) {
         var url = '/admin/mediaflow/media';
         var config = {};
         if (search) config.params = {q: search};
-        $scope.spin = true;
-        $http.get(url, config).success(function (result) {
-            $scope.media = result;
-            $scope.spin = false;
-        });
+        return $http.get(url, config);
     };
 
-    $scope.getMedia();
+    $scope.onFileSelect = function($files) {
+        $scope.spin = true;
+        for (var i = 0; i < $files.length; i++) {
+            var $file = $files[i];
+            $scope.upload = $upload.upload({
+                url: '/admin/mediaflow/upload',
+                file: $file
+            }).then(function(args) {
+                $scope.media.unshift(args.data);
+                $scope.spin = false;
+            }, function(args) {
+                console.log('err', args);
+                $scope.spin = false;
+            });
+        }
+    }
+});
+
+mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http, $upload) {
+    $scope.showMedia = false;
+
+    var updateMedia = function(search) {
+        $scope.spin = true;
+        $scope
+            .getMedia(search)
+            .success(function(results) {
+                $scope.media.splice
+                    .bind($scope.media, 0, $scope.media.length - 1)
+                    .apply($scope.media, results);
+                $scope.spin = false;
+            });
+    };
+    updateMedia();
 
     $scope.$watch('searchText', function(searchText, ov) {
-        if (searchText === ov) return;
-        setTimeout(function() {
-            if (searchText == $scope.searchText) {
-                $scope.getMedia($scope.searchText);
-            }
-        }, 250);
+        if (searchText !== ov) {
+            setTimeout(updateMedia, 250, searchText);
+        }
     });
 
     $scope.select = function (medium) {
@@ -85,73 +107,27 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http, $upload) {
         if (!$el) { return; }
         $el.click();
     };
-
-    $scope.onFileSelect = function($files) {
-        $scope.spin = true;
-        for (var i = 0; i < $files.length; i++) {
-            var $file = $files[i];
-            $scope.upload = $upload.upload({
-                url: '/admin/mediaflow/upload',
-                file: $file,
-                progress: function(evt) {
-                    // TODO
-                }
-            }).then(function(args) {
-                $scope.media.unshift(args.data);
-                $scope.spin = false;
-            }, function(args) {
-                console.log('err', args);
-                $scope.spin = false;
-            });
-        }
-    }
 });
 
 mediaflow.controller('MediaFlowBrowseCtrl', function ($scope, $http, $upload) {
-    $scope.connection = true;
-    $scope.searching = false;
-    $scope.searchText = '';
     $scope.view = 'list';
-    $scope.media = [];
-    $scope.testConnection = function () {
-        $http.get('/admin/mediaflow/check').success(function (result) {
-            $scope.connection = result;
-        });
+
+    var updateMedia = function(search) {
+        $scope.spin = true;
+        $scope
+            .getMedia(search)
+            .success(function(results) {
+                $scope.media.splice
+                    .bind($scope.media, 0, $scope.media.length - 1)
+                    .apply($scope.media, results);
+                $scope.spin = false;
+            });
     };
-    $scope.testConnection();
-    $scope.getMedia = function (search) {
-        var url = '/admin/mediaflow/media';
-        var config = {};
-        if (search) config.params = {q: search};
-        $scope.searching = true;
-        $http.get(url, config).success(function (result) {
-            $scope.media = result;
-            $scope.searching = false;
-        });
-    };
-    $scope.getMedia();
+    updateMedia();
 
     $scope.$watch('searchText', function(searchText, ov) {
-        if (searchText === ov) return;
-        setTimeout(function() {
-            if (searchText == $scope.searchText) {
-                $scope.getMedia($scope.searchText);
-            }
-        }, 250);
-    });
-
-    $scope.onFileSelect = function($files) {
-        for (var i = 0; i < $files.length; i++) {
-            var $file = $files[i];
-            $scope.upload = $upload.upload({
-                url: '/admin/mediaflow/upload',
-                file: $file,
-                progress: function(evt) {
-                    // TODO
-                }
-            }).success(function(data, status, headers, config) {
-                    $scope.getMedia();
-                });
+        if (searchText !== ov) {
+            setTimeout(updateMedia, 250, searchText);
         }
-    }
+    });
 });

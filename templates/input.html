@@ -1,8 +1,8 @@
-<div class="mediaflow-app" ng-controller="MediaFlowFieldCtrl" id="{{id}}">
+<div class="mediaflow-app" ng-controller="MediaFlowCtrl">
     <div ng-hide="connection" class="error" class="ng-cloak">
         Failed to connect to Mediaflow using current settings
     </div>
-    <div ng-show="connection">
+    <div ng-show="connection" ng-controller="MediaFlowFieldCtrl">
         <div class="mediaflow-preview clearafter">
             <div class="thumb" ng-class="{empty:!selected}">
                 <img ng-src="[[selected.thumbnailUrl]]" ng-show="selected">
