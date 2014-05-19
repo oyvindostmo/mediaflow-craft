@@ -33,7 +33,7 @@
         <div ng-show="showMedia" class="mediaflow-fold">
             <div class="clearafter">
                 <div class="texticon search icon">
-                    <input class="text nicetext "
+                    <input class="text nicetext"
                         type="text"
                         autocomplete="off"
                         ng-model="searchText"
@@ -44,6 +44,7 @@
                         class="btn upload-button">
                         Upload
                     </button>
+                    <div class="mediaflow-spinner" ng-class="{hidden: !spin}">Loading ...</div>
                     <a class="close" ng-click="showMedia = false">Close</a>
                 </div>
             </div>
@@ -66,7 +67,6 @@
 {% includeJsResource "mediaflow/angular.min.js" %}
 {% includeJsResource "mediaflow/angularjs-file-upload.js" %}
 {% includeJsResource "mediaflow/mediaflow-ng.js" %}
-{% includeJsResource "mediaflow/craft-field-modal.js" %}
 {% includeJsResource "mediaflow/bootstrap.js" %}
 {% includeCssResource "mediaflow/style.css" %}
 {% if inMatrix %}

@@ -53,6 +53,10 @@
         height: 0;
     }
 
+    .mediaflow-spinner {
+        margin-left: 4px;
+    }
+
     .close {
         color: white;
     }
@@ -99,3 +103,5 @@
         margin-left: -10px;
     }
 }
+
+@import 'spinner';

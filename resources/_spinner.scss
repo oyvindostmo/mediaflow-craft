@@ -1,0 +1,60 @@
+@import 'mixin';
+
+@-webkit-keyframes mediaflow-spinner {
+  0% {
+    @include transform(rotate(0deg));
+  }
+
+  100% {
+    @include transform(rotate(360deg));
+  }
+}
+
+@-moz-keyframes mediaflow-spinner {
+  0% {
+    @include transform(rotate(0deg));
+  }
+
+  100% {
+    @include transform(rotate(360deg));
+  }
+}
+
+@-o-keyframes mediaflow-spinner {
+  0% {
+    @include transform(rotate(0deg));
+  }
+
+  100% {
+    @include transform(rotate(360deg));
+  }
+}
+
+@keyframes mediaflow-spinner {
+  0% {
+    @include transform(rotate(0deg));
+  }
+
+  100% {
+    @include transform(rotate(360deg));
+  }
+}
+
+/* Styles for old versions of IE */
+.mediaflow-spinner {
+  font-family: sans-serif;
+  font-weight: 100;
+}
+
+/* :not(:required) hides this rule from IE9 and below */
+.mediaflow-spinner:not(:required) {
+  @include animation(mediaflow-spinner 1250ms infinite linear);
+  border: 4px solid #fff;
+  border-right-color: transparent;
+  border-radius: 16px;
+  box-sizing: border-box;
+  display: inline-block;
+  text-indent: -9999px;
+  width: 24px;
+  height: 24px;
+}

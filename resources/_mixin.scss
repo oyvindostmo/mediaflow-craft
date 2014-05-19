@@ -6,6 +6,14 @@
     transition: $content;
 }
 
+@mixin animation($content) {
+    -webkit-animation: $content;
+    -moz-animation: $content;
+    -ms-animation: $content;
+    -o-animation: $content;
+    animation: $content;
+}
+
 @mixin accel() {
     -webkit-backface-visibility: hidden;
     -webkit-perspective: 1000;

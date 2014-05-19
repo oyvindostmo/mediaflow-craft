@@ -37,19 +37,39 @@ mediaflow.filter('sizeConverter', function () {
 mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http, $upload) {
     $scope.connection = true;
     $scope.showMedia = false;
+    $scope.spin = false;
+    $scope.searchText = '';
     $scope.media = [];
+
     $scope.testConnection = function () {
         $http.get('/admin/mediaflow/check').success(function (result) {
             $scope.connection = result;
         });
     };
+
     $scope.testConnection();
-    $scope.getMedia = function () {
-        $http.get('/admin/mediaflow/media').success(function (result) {
+
+    $scope.getMedia = function (search) {
+        var url = '/admin/mediaflow/media';
+        var config = {};
+        if (search) config.params = {q: search};
+        $scope.spin = true;
+        $http.get(url, config).success(function (result) {
             $scope.media = result;
+            $scope.spin = false;
         });
     };
+
     $scope.getMedia();
+
+    $scope.$watch('searchText', function(searchText, ov) {
+        if (searchText === ov) return;
+        setTimeout(function() {
+            if (searchText == $scope.searchText) {
+                $scope.getMedia($scope.searchText);
+            }
+        }, 250);
+    });
 
     $scope.select = function (medium) {
         $scope.selected = medium;
@@ -67,6 +87,7 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http, $upload) {
     };
 
     $scope.onFileSelect = function($files) {
+        $scope.spin = true;
         for (var i = 0; i < $files.length; i++) {
             var $file = $files[i];
             $scope.upload = $upload.upload({
@@ -77,6 +98,10 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http, $upload) {
                 }
             }).then(function(args) {
                 $scope.media.unshift(args.data);
+                $scope.spin = false;
+            }, function(args) {
+                console.log('err', args);
+                $scope.spin = false;
             });
         }
     }
