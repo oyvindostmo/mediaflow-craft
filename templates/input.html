@@ -38,13 +38,12 @@
                         autocomplete="off"
                         ng-model="searchText"
                         placeholder="Search">
-                        <!--
-                    <input type="file" multiple
-                        data-icon="↑"
-                        value="Upload"
-                        class="btn upload-button"
-                        ng-file-select="onFileSelect($files)">
-                        -->
+                    <input type="file" multiple ng-file-select="onFileSelect($files)">
+                    <button data-icon="↑" type="button"
+                        ng-click="triggerFileSelect($event)"
+                        class="btn upload-button">
+                        Upload
+                    </button>
                     <a class="close" ng-click="showMedia = false">Close</a>
                 </div>
             </div>

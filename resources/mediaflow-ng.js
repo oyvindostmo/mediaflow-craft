@@ -34,7 +34,7 @@ mediaflow.filter('sizeConverter', function () {
     }
 });
 
-mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http) {
+mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http, $upload) {
     $scope.connection = true;
     $scope.showMedia = false;
     $scope.media = [];
@@ -51,14 +51,19 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http) {
     };
     $scope.getMedia();
 
-    $scope.$watch('selected', function(nv, ov) {
-        if (nv != ov) {
-        }
-    });
-
     $scope.select = function (medium) {
         $scope.selected = medium;
         $scope.showMedia = false;
+    };
+
+    $scope.triggerFileSelect = function($event) {
+        var $target = $event.currentTarget;
+        if (!$target) { return; }
+        var $parent = $target.parentNode;
+        if (!$parent) { return; }
+        var $el = $parent.querySelector('[type="file"]');
+        if (!$el) { return; }
+        $el.click();
     };
 
     $scope.onFileSelect = function($files) {
@@ -70,9 +75,9 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http) {
                 progress: function(evt) {
                     // TODO
                 }
-            }).success(function(data, status, headers, config) {
-                    $scope.getMedia();
-                });
+            }).then(function(args) {
+                $scope.media.unshift(args.data);
+            });
         }
     }
 });

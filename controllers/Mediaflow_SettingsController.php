@@ -34,17 +34,31 @@ class Mediaflow_SettingsController extends BaseController {
         $results = $client->listMedia(false, $search);
         $out = array();
         foreach($results as $k => $item) {
-            $out[$k] = $item->toArray();
-            $out[$k]['thumbnailUrl'] = $item->getThumbnailUrl($this->previewWidth, $this->previewHeight);
-            $out[$k]['isImage'] = $item->isImage();
+            $out[$k] = $this->formatItem($item);
         }
         $this->returnJson($out);
     }
 
     public function actionUpload() {
         $client = $this->_client($this->settings);
-        $client->postMedia($_FILES['file']['tmp_name'], $_FILES['file']['name']);
-        $this->returnJson($_FILES);
+        $file = $_FILES['file'];
+        $filepath = $file['tmp_name'];
+        $filename = $file['name'];
+        $item = $client->postMedia($filepath, $filename, array(), array(
+            'mime' => $file['type']
+        ));
+
+        $this->returnJson($this->formatItem($item));
+    }
+
+    protected function formatItem($item) {
+        $result = $item->toArray();
+        $result['thumbnailUrl'] = $item->getThumbnailUrl(
+            $this->previewWidth,
+            $this->previewHeight
+        );
+        $result['isImage'] = $item->isImage();
+        return $result;
     }
 
     protected function _client($settings) {

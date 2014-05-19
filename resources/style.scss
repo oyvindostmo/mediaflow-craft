@@ -47,6 +47,16 @@
     padding: 10px 24px;
     background: #333;
 
+    input[type="file"] {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+
+    .close {
+        color: white;
+    }
+
     .thumbs li {
         width: 100px;
         height: 100px;
