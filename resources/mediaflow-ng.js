@@ -73,6 +73,7 @@ mediaflow.controller('MediaFlowCtrl', function ($scope, $http, $upload) {
 
 mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http, $upload) {
     $scope.showMedia = false;
+    $scope.selected = false;
 
     var updateMedia = function(search) {
         $scope.spin = true;

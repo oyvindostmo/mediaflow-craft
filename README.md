@@ -5,22 +5,26 @@ Craft CMS Keyteq Mediaflow plugin. Read more [Visit Mediaflow!](http://getmediaf
 Download it and install in the plugins folder of Craft. 
 
 ## Example of usage
-You can use the Mediaflow plugin 
 
-### Using IMG tag
-```
-<img src="{{entry.mediaflowField.getCroppedImage(width,height,[quality]}}" />
+### Generating a media preview URL
+
+```twig
+<img src="{{entry.mediaflowField.url({width: 100,height: 100}) }}" />
 ```
 
-### Using Foundation Interchange
-```
-<img data-interchange="[{{entry.mediaflowField.getCroppedImage(width,height,[quality]}}, (default)], [{{entry.mediaflowField.getCroppedImage(width,height,[quality]}}, (large)]">
-<noscript><img src="{{entry.mediaflowField.getCroppedImage(width,height,[quality]}}"></noscript>
+### Example with Foundation Interchange
+```twig
+{% set media = entry.mediaflowField %}
+<img data-interchange="
+    [{{ media.url({width:width,height:height,quality:90}) }}, (default)],
+    [{{ media.url({width:width,height:height,quality:90}) }}, (large)]
+">
+<noscript>
+    <img src="{{entry.mediaflowField.getCroppedImage(width,height,[quality]}}">
+</noscript>
 ```
 
 ### Using Picturefill.js
 ```
 
 ```
-
-## Download

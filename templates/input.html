@@ -4,8 +4,8 @@
     </div>
     <div ng-show="connection" ng-controller="MediaFlowFieldCtrl">
         <div class="mediaflow-preview clearafter">
-            <div class="thumb" ng-class="{empty:!selected}">
-                <img ng-src="[[selected.thumbnailUrl]]" ng-show="selected">
+            <div class="thumb" ng-class="{empty:!selected.name}">
+                <img ng-src="[[selected.thumb]]" ng-show="selected">
             </div>
             <div class="mediaflow-meta" ng-show="selected">
                 <dl>
@@ -53,7 +53,7 @@
                 <ul>
                     <li ng-repeat="medium in media">
                         <img ng-show="medium.isImage"
-                            ng-src="[[medium.thumbnailUrl]]"
+                            ng-src="[[medium.thumb]]"
                             ng-click="select(medium)"
                         >
                     </li>

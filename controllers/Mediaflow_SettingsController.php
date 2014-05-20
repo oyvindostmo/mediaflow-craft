@@ -53,7 +53,7 @@ class Mediaflow_SettingsController extends BaseController {
 
     protected function formatItem($item) {
         $result = $item->toArray();
-        $result['thumbnailUrl'] = $item->getThumbnailUrl(
+        $result['thumb'] = $item->getThumbnailUrl(
             $this->previewWidth,
             $this->previewHeight
         );

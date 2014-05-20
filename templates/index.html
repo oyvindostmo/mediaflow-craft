@@ -97,7 +97,7 @@ browse: { label: "Browse"|t, url: url('mediaflow/index') }
                             <tr ng-repeat="medium in media|filter:searchText">
                                 <td scope="row">
                                     <div class="element hasthumb">
-                                        <img ng-show="medium.isImage" class="elementthumb elementthumb4" ng-src="[[medium.thumbnailUrl]]" />
+                                        <img ng-show="medium.isImage" class="elementthumb elementthumb4" ng-src="[[medium.thumb]]" />
                                         <div class="label"><span class="title">[[medium.name]]</span>
                                         </div>
                                     </div>
@@ -113,7 +113,7 @@ browse: { label: "Browse"|t, url: url('mediaflow/index') }
                     <ul class="thumbsview">
                         <li ng-repeat="medium in media|filter:searchText">
                             <div class="element hasthumb">
-                                <img ng-show="medium.isImage" class="elementthumb elementthumb4" ng-src="[[medium.thumbnailUrl]]" />
+                                <img ng-show="medium.isImage" class="elementthumb elementthumb4" ng-src="[[medium.thumb]]" />
                                 <div class="label"><span class="title">[[medium.name]]</span>
                                 </div>
                             </div>
