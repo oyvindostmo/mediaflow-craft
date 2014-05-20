@@ -2,8 +2,6 @@
 
 namespace Craft;
 
-require __DIR__.'/../vendor/autoload.php';
-
 use Keyteq\Keymedia\KeymediaClient;
 class Mediaflow_SettingsController extends BaseController {
 

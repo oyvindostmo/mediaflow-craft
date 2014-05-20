@@ -14,7 +14,6 @@
             "email": "raymond.julin@gmail.com"
         }
     ],
-    "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0",
         "keyteqlabs/keymedia": "~1.0",
