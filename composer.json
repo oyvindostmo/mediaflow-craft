@@ -1,5 +1,5 @@
 {
-    "name": "keyteqlabs/mediaflow-craft",
+    "name": "mediaflow/mediaflow-craft",
     "type": "craft-plugin",
     "extra": {"installer-name": "mediaflow"},
     "description": "Mediaflow Craft plugin",
