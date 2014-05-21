@@ -28,10 +28,12 @@ class Mediaflow_MediaFieldType extends BaseFieldType
         $data = array();
         $copy = array(
             'name' => 'name',
+            'host' => 'host',
             'isImage' => 'isImage',
             'thumbnailUrl' => 'thumb',
             'thumb' => 'thumb',
-            '_id' => 'id'
+            '_id' => 'id',
+            'id' => 'id'
         );
         foreach ($copy as $now => $key) {
             if (isset($value[$now])) {
@@ -51,9 +53,6 @@ class Mediaflow_MediaFieldType extends BaseFieldType
             );
         }
         $model = Mediaflow_MediaModel::populateModel($data);
-        if (isset($value['host'])) {
-            $model->setHost($value['host']);
-        }
         return $model;
     }
 

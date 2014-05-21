@@ -3,12 +3,6 @@ namespace Craft;
 
 class Mediaflow_MediaModel extends BaseModel
 {
-    protected $host = null;
-
-    public function setHost($host) {
-        $this->host = $host;
-    }
-
 	/**
 	 * @access protected
 	 * @return array
@@ -18,6 +12,7 @@ class Mediaflow_MediaModel extends BaseModel
 		return array_merge(parent::defineAttributes(), array(
 			'id'    => AttributeType::String,
 			'name'    => AttributeType::String,
+			'host'    => AttributeType::String,
 			'isImage'    => AttributeType::Bool,
 			'thumb'    => AttributeType::String,
 			'file' => AttributeType::Mixed,
@@ -30,7 +25,8 @@ class Mediaflow_MediaModel extends BaseModel
             'height' => false,
             'quality' => false,
             'crop' => true,
-            'ending' => $this->file['ending']
+            'ending' => $this->file['ending'],
+            'host' => $this->host
         );
         if (!$options['width'] && !$options['height']) {
             throw new \Exception("width or height must be specified for media.url()");
