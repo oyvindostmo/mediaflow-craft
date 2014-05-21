@@ -18,7 +18,12 @@
   "homepage": "https://github.com/KeyteqLabs/mediaflow-craft",
   "devDependencies": {
     "gulp": "^3.6.2",
+    "gulp-ignore": "^1.1.0",
     "gulp-jshint": "^1.6.1",
-    "gulp-sass": "^0.7.1"
+    "gulp-rimraf": "^0.1.0",
+    "gulp-run": "^1.4.3",
+    "gulp-sass": "^0.7.1",
+    "gulp-shell": "^0.2.5",
+    "gulp-zip": "^0.3.4"
   }
 }

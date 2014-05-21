@@ -1,6 +1,8 @@
 <?php
 namespace Craft;
 
+$autoloaderPath = __DIR__ . '/vendor/autoload.php';
+file_exists($autoloaderPath) && require $autoloaderPath;
 
 class MediaflowPlugin extends BasePlugin {
 
@@ -11,7 +13,7 @@ class MediaflowPlugin extends BasePlugin {
 
     public function getVersion()
     {
-        return '0.0.6';
+        return '0.1.2';
     }
 
     public function getDeveloper()

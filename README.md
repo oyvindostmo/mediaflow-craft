@@ -2,15 +2,23 @@
 Craft CMS Keyteq Mediaflow plugin. Read more [Visit Mediaflow!](http://getmediaflow.com)
 
 ## Install
-```
-composer require mediaflow/mediaflow-craft:dev-master
-```
 
-Modify your `public/index.php` to autoload depdendencies by adding this as the second to last line:
+### The easy and clean way
 
-```php
-require __DIR__ . '/../vendor/autoload.php';
-```
+1. `composer require mediaflow/mediaflow-craft:~1.0`
+2. Modify your `public/index.php` to autoload depdendencies by adding this as the second to last line:
+
+    ```php
+    require __DIR__ . '/../vendor/autoload.php';
+    ```
+
+    This is only required once for all plugins using composer
+
+### The hard Crafty way
+
+1. Open [the list of releases](https://github.com/KeyteqLabs/mediaflow-craft/releases/)
+2. Download the zip file for the desired release
+3. Unpack the zip file to `plugins/mediaflow/`
 
 ## Example of usage
 
@@ -28,7 +36,7 @@ require __DIR__ . '/../vendor/autoload.php';
     [{{ media.url({width:width,height:height,quality:90}) }}, (large)]
 ">
 <noscript>
-    <img src="{{entry.mediaflowField.getCroppedImage(width,height,[quality]}}">
+    <img src="{{media.url({width:width,height:height,quality:90}) }}">
 </noscript>
 ```
 
