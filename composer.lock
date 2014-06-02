@@ -46,7 +46,7 @@
                 {
                     "name": "Kyle Robinson Young",
                     "email": "kyle@dontkry.com",
-                    "homepage": "https://github.com/shama",
+                    "homepage": "http://dontkry.com",
                     "role": "Developer"
                 }
             ],
@@ -91,16 +91,16 @@
         },
         {
             "name": "keyteqlabs/keymedia",
-            "version": "v1.0.1",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/KeyteqLabs/keymedia-php.git",
-                "reference": "431e479f89d34477cc457d4241e34ae861e38197"
+                "reference": "a2484a8224c8a8c78d873ab5dfa2b841f067b4f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/KeyteqLabs/keymedia-php/zipball/431e479f89d34477cc457d4241e34ae861e38197",
-                "reference": "431e479f89d34477cc457d4241e34ae861e38197",
+                "url": "https://api.github.com/repos/KeyteqLabs/keymedia-php/zipball/a2484a8224c8a8c78d873ab5dfa2b841f067b4f1",
+                "reference": "a2484a8224c8a8c78d873ab5dfa2b841f067b4f1",
                 "shasum": ""
             },
             "require": {
@@ -139,7 +139,7 @@
                 }
             ],
             "description": "Keymedia API wrapper in PHP",
-            "time": "2014-05-19 08:32:18"
+            "time": "2014-06-02 08:47:06"
         },
         {
             "name": "mashape/unirest-php",

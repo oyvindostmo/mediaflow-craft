@@ -88,9 +88,11 @@ mediaflow.controller('MediaFlowFieldCtrl', function ($scope, $http, $upload) {
     };
     updateMedia();
 
+    var timeout;
     $scope.$watch('searchText', function(searchText, ov) {
         if (searchText !== ov) {
-            setTimeout(updateMedia, 250, searchText);
+            if (timeout) clearTimeout(timeout);
+            timeout = setTimeout(updateMedia, 250, searchText);
         }
     });
 
@@ -126,9 +128,11 @@ mediaflow.controller('MediaFlowBrowseCtrl', function ($scope, $http, $upload) {
     };
     updateMedia();
 
+    var timeout;
     $scope.$watch('searchText', function(searchText, ov) {
         if (searchText !== ov) {
-            setTimeout(updateMedia, 250, searchText);
+            if (timeout) clearTimeout(timeout);
+            timeout = setTimeout(updateMedia, 250, searchText);
         }
     });
 });

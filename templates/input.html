@@ -4,10 +4,10 @@
     </div>
     <div ng-show="connection" ng-controller="MediaFlowFieldCtrl">
         <div class="mediaflow-preview clearafter">
-            <div class="thumb" ng-class="{empty:!selected.id}">
+            <div class="thumb" ng-class="{empty:!selected.file}">
                 <img ng-src="[[selected.thumb]]" ng-show="selected">
             </div>
-            <div class="mediaflow-meta" ng-show="selected.id">
+            <div class="mediaflow-meta" ng-show="selected.file">
                 <dl>
                     <dt>Name</dt>
                     <dd>[[selected.name]]</dd>
